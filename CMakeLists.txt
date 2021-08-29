@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.20)
-project(TareaExtraclase1)
+project(paged-sort)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(TareaExtraclase1 main.cpp)
+add_executable(paged-sort main.cpp)
