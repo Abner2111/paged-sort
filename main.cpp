@@ -12,7 +12,7 @@ class PagedArray{
 public:
 
     int size;
-    int virtualArray[256][2];
+    int virtualArray[256*3][2];
     ifstream infile;
     ofstream outfile;
 
@@ -67,5 +67,5 @@ int sort(int array[], int size){
 }
 
 int main() {
-
+    cout << (sizeof(int)*2*3*256)/1024<< endl;
 }
