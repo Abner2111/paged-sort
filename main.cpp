@@ -3,12 +3,15 @@
  * @date 8/28/2021
  * @brief program that sorts a large file with integers with just 6 pages of 1KB of memory each
  */
+
 #include <iostream>
 #include <fstream>
 #include <stdio.h>
-#include <cstring>
 using namespace std;
 
+/**
+ * @brief Class used to build a paged array. It´s used to work on a large file of integers without having to load it to memory at once
+ */
 class PagedArray{
 public:
     int size;
@@ -16,6 +19,25 @@ public:
     ofstream outfile;
     string copyfilename;
     string outputfilename;
+
+    /**
+     * @brief It populates the paged array at its maximum capacity
+     */
+    void populateVA(string inputname){
+        this->infile.open(inputname);
+        if(this->infile.is_open()){
+            int i = 0;
+            string line;
+            while(!this->infile.eof() && i<(this->size)){
+                getline(this->infile, line);
+                this->virtualArray[i][0]=i;
+                this->virtualArray[i][1]=stoi(line);
+                i++;
+                cout << line << " " << i << endl;
+            }
+        }
+        this->infile.close();
+    }
 
     PagedArray(string inputfilename, string outputfilename){
         this->outputfilename = outputfilename;
@@ -36,15 +58,16 @@ public:
         } else {
             printf("Cannot read file");
         }
+
         this->infile.close();
         this->outfile.close();
-
-
+        this->populateVA(inputfilename);
     }
-    /***
+
+    /**
      *
      * @param i
-     * @return the value of the element in the requestedd index from the paged array
+     * @return the value of the element in the requested index from the paged array
      * @brief it overloads the subscripting operator
      */
     int& operator[](int i){
@@ -52,6 +75,7 @@ public:
         for (pi;pi<this->size;pi++){
             if(this->virtualArray[pi][0]==i){
                 return this->virtualArray[pi][1];
+                cout << "found" << endl;
             } else {
                 cout << "page fault" << endl;
                 //pageFault
@@ -64,7 +88,7 @@ private:
     int virtualArray[256*3][2];
     int nextflush = 0;
 
-    /***
+    /**
      *
      * @param i
      * @return the int& from the array, tranlated from the virtual memory after being inserted in it
@@ -72,7 +96,7 @@ private:
     int& replace(int i){
         int pos = 0;
         infile.open(this->outputfilename);
-        outfile.open(copyfilename);
+        outfile.open(this->copyfilename);
         string line;
         int curr;
 
@@ -97,36 +121,43 @@ private:
             }
             remove(this->outputfilename.c_str());
             rename(this->copyfilename.c_str(), this->outputfilename.c_str());
+            this->infile.close();
+            this->outfile.close();
             return (int &) virtualArray[curr][1];
         }
     }
-
 };
 
 
-/**
+
+class sorting{
+public:
+
+    /**
  *
  * @param array
  * @param size
  * @return none
  * @brief it sorts a given array of integers using the insertion sort algorithm with pointers
  */
+    int sort(int array[], int size){
+        int i, curr, j;
+        for (i = 1; i<size; i++){
+            cout << "setting key..."<<endl;
+            curr = array[i];
+            j = i - 1;
 
-int sort(int array[], int size){
-    int i, curr, j;
-    for (i = 1; i<size; i++){
-        curr = array[i];
-        j = i - 1;
-
-        while (j >=0 && array[j] > curr){
-            array[j+1] = array[j];
-            j = j - 1;
+            while (j >=0 && array[j] > curr){
+                array[j+1] = array[j];
+                j = j - 1;
+            }
+            array[j+1] = curr;
         }
-        array[j+1] = curr;
     }
-}
+};
+
 
 int main() {
     PagedArray array("randomnumbers.txt", "newfile.txt");
-    sort(&array[0], array.size);
+    sort(&array[0],array.size);
 }

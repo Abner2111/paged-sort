@@ -1,0 +1,110 @@
+\hypertarget{class_paged_array}{}\doxysection{Paged\+Array Class Reference}
+\label{class_paged_array}\index{PagedArray@{PagedArray}}
+
+
+Class used to build a paged array. It´s used to work on a large file of integers without having to load it to memory at once.  
+
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_paged_array_af15535d3b11ab5a1b188718d2b03a10b}{populate\+VA}} (string inputname)
+\begin{DoxyCompactList}\small\item\em It populates the paged array at its maximum capacity. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_paged_array_a898187ab4b8f28f629aac016d3507100}{Paged\+Array}} (string inputfilename, string \mbox{\hyperlink{class_paged_array_a7a54c1dfe36a47e5321c5ee9e49f4550}{outputfilename}})
+\item 
+int \& \mbox{\hyperlink{class_paged_array_a164160cfe272796372f048b169136656}{operator\mbox{[}$\,$\mbox{]}}} (int i)
+\begin{DoxyCompactList}\small\item\em it overloads the subscripting operator \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{class_paged_array_a5b2b623ebce51d27bdd0e9af66f3c972}{size}}
+\item 
+ifstream \mbox{\hyperlink{class_paged_array_a5eb5a0c4432a0bfc168b8eabc93fed32}{infile}}
+\item 
+ofstream \mbox{\hyperlink{class_paged_array_a5a2fe3736fee532b9e4a462600f85e1e}{outfile}}
+\item 
+string \mbox{\hyperlink{class_paged_array_a44d84be288d6e7e3c1d939f9e7bea2a3}{copyfilename}}
+\item 
+string \mbox{\hyperlink{class_paged_array_a7a54c1dfe36a47e5321c5ee9e49f4550}{outputfilename}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class used to build a paged array. It´s used to work on a large file of integers without having to load it to memory at once. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_paged_array_a898187ab4b8f28f629aac016d3507100}\label{class_paged_array_a898187ab4b8f28f629aac016d3507100}} 
+\index{PagedArray@{PagedArray}!PagedArray@{PagedArray}}
+\index{PagedArray@{PagedArray}!PagedArray@{PagedArray}}
+\doxysubsubsection{\texorpdfstring{PagedArray()}{PagedArray()}}
+{\footnotesize\ttfamily Paged\+Array\+::\+Paged\+Array (\begin{DoxyParamCaption}\item[{string}]{inputfilename,  }\item[{string}]{outputfilename }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_paged_array_a164160cfe272796372f048b169136656}\label{class_paged_array_a164160cfe272796372f048b169136656}} 
+\index{PagedArray@{PagedArray}!operator\mbox{[}\mbox{]}@{operator[]}}
+\index{operator\mbox{[}\mbox{]}@{operator[]}!PagedArray@{PagedArray}}
+\doxysubsubsection{\texorpdfstring{operator[]()}{operator[]()}}
+{\footnotesize\ttfamily int \& Paged\+Array\+::operator\mbox{[}$\,$\mbox{]} (\begin{DoxyParamCaption}\item[{int}]{i }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+it overloads the subscripting operator 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the value of the element in the requested index from the paged array 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_paged_array_af15535d3b11ab5a1b188718d2b03a10b}\label{class_paged_array_af15535d3b11ab5a1b188718d2b03a10b}} 
+\index{PagedArray@{PagedArray}!populateVA@{populateVA}}
+\index{populateVA@{populateVA}!PagedArray@{PagedArray}}
+\doxysubsubsection{\texorpdfstring{populateVA()}{populateVA()}}
+{\footnotesize\ttfamily void Paged\+Array\+::populate\+VA (\begin{DoxyParamCaption}\item[{string}]{inputname }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+It populates the paged array at its maximum capacity. 
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_paged_array_a44d84be288d6e7e3c1d939f9e7bea2a3}\label{class_paged_array_a44d84be288d6e7e3c1d939f9e7bea2a3}} 
+\index{PagedArray@{PagedArray}!copyfilename@{copyfilename}}
+\index{copyfilename@{copyfilename}!PagedArray@{PagedArray}}
+\doxysubsubsection{\texorpdfstring{copyfilename}{copyfilename}}
+{\footnotesize\ttfamily string Paged\+Array\+::copyfilename}
+
+\mbox{\Hypertarget{class_paged_array_a5eb5a0c4432a0bfc168b8eabc93fed32}\label{class_paged_array_a5eb5a0c4432a0bfc168b8eabc93fed32}} 
+\index{PagedArray@{PagedArray}!infile@{infile}}
+\index{infile@{infile}!PagedArray@{PagedArray}}
+\doxysubsubsection{\texorpdfstring{infile}{infile}}
+{\footnotesize\ttfamily ifstream Paged\+Array\+::infile}
+
+\mbox{\Hypertarget{class_paged_array_a5a2fe3736fee532b9e4a462600f85e1e}\label{class_paged_array_a5a2fe3736fee532b9e4a462600f85e1e}} 
+\index{PagedArray@{PagedArray}!outfile@{outfile}}
+\index{outfile@{outfile}!PagedArray@{PagedArray}}
+\doxysubsubsection{\texorpdfstring{outfile}{outfile}}
+{\footnotesize\ttfamily ofstream Paged\+Array\+::outfile}
+
+\mbox{\Hypertarget{class_paged_array_a7a54c1dfe36a47e5321c5ee9e49f4550}\label{class_paged_array_a7a54c1dfe36a47e5321c5ee9e49f4550}} 
+\index{PagedArray@{PagedArray}!outputfilename@{outputfilename}}
+\index{outputfilename@{outputfilename}!PagedArray@{PagedArray}}
+\doxysubsubsection{\texorpdfstring{outputfilename}{outputfilename}}
+{\footnotesize\ttfamily string Paged\+Array\+::outputfilename}
+
+\mbox{\Hypertarget{class_paged_array_a5b2b623ebce51d27bdd0e9af66f3c972}\label{class_paged_array_a5b2b623ebce51d27bdd0e9af66f3c972}} 
+\index{PagedArray@{PagedArray}!size@{size}}
+\index{size@{size}!PagedArray@{PagedArray}}
+\doxysubsubsection{\texorpdfstring{size}{size}}
+{\footnotesize\ttfamily int Paged\+Array\+::size}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{main_8cpp}{main.\+cpp}}\end{DoxyCompactItemize}
