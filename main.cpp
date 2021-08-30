@@ -20,6 +20,34 @@ public:
     string copyfilename;
     string outputfilename;
 
+    void flush(){
+        infile.open(outputfilename);
+        outfile.open("finalfile.txt");
+        string line;
+        int i = 0;
+        int j = 0;
+        int arraysize;
+        if(this->size <= 256*3){
+            arraysize = this->size;
+        }
+        if(this->infile.is_open() && this->outfile.is_open()){
+            while(!this->infile.eof()){
+                getline(this->infile, line);
+                for(j;j<arraysize;j++){
+                    if(this->virtualArray[j][0]==i){
+                        outfile<<virtualArray[j][1]<<"\n";
+                        if (!this->infile.eof()){
+                            getline(this->infile, line);
+                        }
+                    }
+                }
+                this->outfile << line << "\n";
+            }
+
+            }
+        this->infile.close();
+        this->outfile.close();
+    }
     /**
      * @brief It populates the paged array at its maximum capacity
      */
@@ -58,7 +86,6 @@ public:
         } else {
             printf("Cannot read file");
         }
-
         this->infile.close();
         this->outfile.close();
         this->populateVA(inputfilename);
@@ -70,12 +97,13 @@ public:
      * @return the value of the element in the requested index from the paged array
      * @brief it overloads the subscripting operator
      */
-    int& operator[](int i){
+    int &operator[](int i){
         int pi = 0;
         for (pi;pi<this->size;pi++){
             if(this->virtualArray[pi][0]==i){
-                return this->virtualArray[pi][1];
                 cout << "found" << endl;
+                int *p = &virtualArray[pi][1];
+                return *p;
             } else {
                 cout << "page fault" << endl;
                 //pageFault
@@ -121,16 +149,16 @@ private:
             }
             remove(this->outputfilename.c_str());
             rename(this->copyfilename.c_str(), this->outputfilename.c_str());
-            this->infile.close();
-            this->outfile.close();
-            return (int &) virtualArray[curr][1];
+
+            int *p = &virtualArray[curr][1];
+            return *p;
         }
+        this->infile.close();
+        this->outfile.close();
     }
 };
 
-
-
-class sorting{
+class Sorting{
 public:
 
     /**
@@ -159,5 +187,7 @@ public:
 
 int main() {
     PagedArray array("randomnumbers.txt", "newfile.txt");
-    sort(&array[0],array.size);
+    Sorting sort_elements;
+    sort_elements.sort(&array[0],array.size);
+    array.flush();
 }
